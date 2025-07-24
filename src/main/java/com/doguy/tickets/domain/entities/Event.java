@@ -3,6 +3,7 @@ package com.doguy.tickets.domain.entities;
 import com.doguy.tickets.domain.enums.EventStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
+import org.apache.logging.log4j.util.Lazy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -57,6 +58,9 @@ public class Event {
 
     @ManyToMany(mappedBy = "staffingEvents")
     private List<User> staff = new ArrayList<>();
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<TicketType> ticketTypes = new ArrayList<>();
 
     @CreatedDate
     @Column(name = "created_at", updatable = false, nullable = false)
