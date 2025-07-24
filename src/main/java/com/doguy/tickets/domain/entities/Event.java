@@ -69,4 +69,27 @@ public class Event {
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Event event = (Event) o;
+        return id.equals(event.id) && name.equals(event.name) && start.equals(event.start) && end.equals(event.end) && venue.equals(event.venue) && salesStart.equals(event.salesStart) && salesEnd.equals(event.salesEnd) && status == event.status && createdAt.equals(event.createdAt) && updatedAt.equals(event.updatedAt);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + start.hashCode();
+        result = 31 * result + end.hashCode();
+        result = 31 * result + venue.hashCode();
+        result = 31 * result + salesStart.hashCode();
+        result = 31 * result + salesEnd.hashCode();
+        result = 31 * result + status.hashCode();
+        result = 31 * result + createdAt.hashCode();
+        result = 31 * result + updatedAt.hashCode();
+        return result;
+    }
 }
