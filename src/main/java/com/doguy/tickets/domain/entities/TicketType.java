@@ -34,6 +34,9 @@ public class TicketType {
     @Column(name = "total_available")
     private Integer totalAvailable;
 
+    @Column(name = "description")
+    private String description;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id")
     private Event event;
@@ -63,6 +66,7 @@ public class TicketType {
         result = 31 * result + Objects.hashCode(name);
         result = 31 * result + Objects.hashCode(price);
         result = 31 * result + Objects.hashCode(totalAvailable);
+        result = 31 * result + Objects.hashCode(description);
         result = 31 * result + Objects.hashCode(createdAt);
         result = 31 * result + Objects.hashCode(updatedAt);
         return result;
