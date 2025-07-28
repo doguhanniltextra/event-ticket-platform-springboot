@@ -1,10 +1,13 @@
 package com.doguy.tickets.controllers;
 
 import com.doguy.tickets.domain.CreateEventRequest;
+import com.doguy.tickets.domain.UpdateEventRequest;
 import com.doguy.tickets.domain.dtos.requests.CreateEventRequestDto;
+import com.doguy.tickets.domain.dtos.requests.UpdateEventRequestDto;
 import com.doguy.tickets.domain.dtos.responses.CreateEventResponseDto;
 import com.doguy.tickets.domain.dtos.responses.GetEventDetailsResponseDto;
 import com.doguy.tickets.domain.dtos.responses.ListEventResponseDto;
+import com.doguy.tickets.domain.dtos.responses.UpdateEventResponseDto;
 import com.doguy.tickets.domain.entities.Event;
 import com.doguy.tickets.mappers.EventMapper;
 import com.doguy.tickets.services.EventService;
@@ -71,6 +74,23 @@ public class EventController {
 
 
     }
+
+    @PutMapping(path = "/{eventId}")
+    public ResponseEntity<UpdateEventResponseDto> updateEvent(
+            @AuthenticationPrincipal Jwt jwt,
+            @PathVariable UUID eventId,
+            @Valid @RequestBody UpdateEventRequestDto updateEventRequestDto
+    ) {
+
+     UpdateEventRequest updateEventRequest = eventMapper.fromDto(updateEventRequestDto);
+
+        UUID userId = parseUserId(jwt);
+        Event updatedEvent = eventService.updateEventForOrganizer(userId, eventId, updateEventRequest);
+
+        UpdateEventResponseDto updateEventResponseDto = eventMapper.toUpdateEventResponseDto(updatedEvent);
+        return ResponseEntity.ok(updateEventResponseDto);
+    }
+
 
     private UUID parseUserId(Jwt jwt) {
         return UUID.fromString(jwt.getSubject());

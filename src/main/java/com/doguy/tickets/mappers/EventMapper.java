@@ -5,6 +5,7 @@ import com.doguy.tickets.domain.CreateTicketTypeRequest;
 import com.doguy.tickets.domain.UpdateEventRequest;
 import com.doguy.tickets.domain.UpdateTicketTypeRequest;
 import com.doguy.tickets.domain.dtos.requests.CreateEventRequestDto;
+import com.doguy.tickets.domain.dtos.requests.UpdateEventRequestDto;
 import com.doguy.tickets.domain.dtos.requests.UpdateTicketTypeRequestDto;
 import com.doguy.tickets.domain.dtos.responses.*;
 import com.doguy.tickets.domain.entities.Event;
@@ -26,7 +27,8 @@ public interface EventMapper {
     ListEventResponseDto toListEventResponseDto(Event event);
 
     UpdateTicketTypeRequest fromDto(UpdateTicketTypeRequestDto dto);
-    UpdateEventRequest fromDto(UpdateEventResponseDto dto);
+    UpdateEventRequest fromDto(UpdateEventRequestDto dto);
+
 
     UpdateTicketTypeResponseDto toUpdateTicketTypeResponseDto(TicketType ticketType);
     UpdateEventResponseDto toUpdateEventResponseDto(Event event);
