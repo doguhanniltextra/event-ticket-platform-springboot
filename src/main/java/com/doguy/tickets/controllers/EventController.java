@@ -3,6 +3,7 @@ package com.doguy.tickets.controllers;
 import com.doguy.tickets.domain.CreateEventRequest;
 import com.doguy.tickets.domain.dtos.requests.CreateEventRequestDto;
 import com.doguy.tickets.domain.dtos.responses.CreateEventResponseDto;
+import com.doguy.tickets.domain.dtos.responses.GetEventDetailsResponseDto;
 import com.doguy.tickets.domain.dtos.responses.ListEventResponseDto;
 import com.doguy.tickets.domain.entities.Event;
 import com.doguy.tickets.mappers.EventMapper;
@@ -18,6 +19,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -54,6 +56,20 @@ public class EventController {
         Page<Event> events = eventService.listEventsForOrganizer(userId, pageable);
 
         return ResponseEntity.ok(events.map(eventMapper::toListEventResponseDto));
+    }
+
+    @GetMapping(path = "/{eventId}")
+    public ResponseEntity<GetEventDetailsResponseDto> getEvent(
+            @AuthenticationPrincipal Jwt jwt,
+            @PathVariable UUID eventId
+    ) {
+        UUID userId = parseUserId(jwt);
+       return eventService.getEventForOrganizer(userId, eventId)
+                .map(eventMapper:: toGetEventDetailsResponseDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+
+
     }
 
     private UUID parseUserId(Jwt jwt) {
