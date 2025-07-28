@@ -66,4 +66,10 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findByOrganizerId(organizerId, pageable);
     }
 
+    @Override
+    public Optional<Event> getEventForOrganizer(UUID organizerId, UUID id) {
+        return eventRepository.findByIdAndOrganizerId(id, organizerId);
+    }
+
+
 }
