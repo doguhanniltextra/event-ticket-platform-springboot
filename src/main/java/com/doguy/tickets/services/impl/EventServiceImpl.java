@@ -9,6 +9,9 @@ import com.doguy.tickets.repositories.EventRepository;
 import com.doguy.tickets.repositories.UserRepository;
 import com.doguy.tickets.services.EventService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +33,8 @@ public class EventServiceImpl implements EventService {
                                 String.format("User with that ID is not found")));
 
         Event eventToCreate = new Event();
-        List<TicketType> ticketTypesToCreate = event.getTicketTypes()
+        List<TicketType> ticketTypesToCreate = event
+                .getTicketTypes()
                 .stream()
                 .map(ticketType ->{
                         TicketType ticketTypeToCreate = new TicketType();
@@ -55,6 +59,11 @@ public class EventServiceImpl implements EventService {
         Event save = eventRepository.save(eventToCreate);
 
         return save;
+    }
+
+    @Override
+    public Page<Event> listEventsForOrganizer(UUID organizerId, Pageable pageable) {
+        return eventRepository.findByOrganizerId(organizerId, pageable);
     }
 
 }
