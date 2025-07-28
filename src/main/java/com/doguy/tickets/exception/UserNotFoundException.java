@@ -2,7 +2,7 @@ package com.doguy.tickets.exception;
 
 public class UserNotFoundException extends EventTicketException {
     public UserNotFoundException() {
-        
+
     }
 
     public UserNotFoundException(String message) {
