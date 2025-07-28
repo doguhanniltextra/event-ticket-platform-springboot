@@ -1,4 +1,4 @@
-package com.doguy.tickets.domain.dtos;
+package com.doguy.tickets.domain.dtos.requests;
 
 import com.doguy.tickets.domain.enums.EventStatusEnum;
 import jakarta.validation.Valid;

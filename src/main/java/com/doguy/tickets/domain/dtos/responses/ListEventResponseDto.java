@@ -1,20 +1,19 @@
-package com.doguy.tickets.domain.dtos;
+package com.doguy.tickets.domain.dtos.responses;
 
 import com.doguy.tickets.domain.enums.EventStatusEnum;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateEventResponseDto {
+public class ListEventResponseDto {
     private UUID id;
     private String name;
     private LocalDateTime start;
@@ -23,7 +22,5 @@ public class CreateEventResponseDto {
     private LocalDateTime salesStart;
     private LocalDateTime salesEnd;
     private EventStatusEnum status;
-    private List<CreateTicketTypeResponseDto> ticketTypes;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private List<ListEventTicketTypeResponseDto> ticketTypes = new ArrayList<>();
 }

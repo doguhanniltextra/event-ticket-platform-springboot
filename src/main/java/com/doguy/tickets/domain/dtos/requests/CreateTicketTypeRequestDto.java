@@ -1,4 +1,4 @@
-package com.doguy.tickets.domain.dtos;
+package com.doguy.tickets.domain.dtos.requests;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

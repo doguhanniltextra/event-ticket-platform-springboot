@@ -1,9 +1,9 @@
 package com.doguy.tickets.controllers;
 
 import com.doguy.tickets.domain.CreateEventRequest;
-import com.doguy.tickets.domain.dtos.CreateEventRequestDto;
-import com.doguy.tickets.domain.dtos.CreateEventResponseDto;
-import com.doguy.tickets.domain.dtos.ListEventResponseDto;
+import com.doguy.tickets.domain.dtos.requests.CreateEventRequestDto;
+import com.doguy.tickets.domain.dtos.responses.CreateEventResponseDto;
+import com.doguy.tickets.domain.dtos.responses.ListEventResponseDto;
 import com.doguy.tickets.domain.entities.Event;
 import com.doguy.tickets.mappers.EventMapper;
 import com.doguy.tickets.services.EventService;

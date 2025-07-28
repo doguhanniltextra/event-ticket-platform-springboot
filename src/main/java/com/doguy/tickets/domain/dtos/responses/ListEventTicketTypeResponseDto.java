@@ -1,4 +1,4 @@
-package com.doguy.tickets.domain.dtos;
+package com.doguy.tickets.domain.dtos.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

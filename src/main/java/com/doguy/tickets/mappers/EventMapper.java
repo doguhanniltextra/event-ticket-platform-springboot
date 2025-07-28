@@ -2,10 +2,10 @@ package com.doguy.tickets.mappers;
 
 import com.doguy.tickets.domain.CreateEventRequest;
 import com.doguy.tickets.domain.CreateTicketTypeRequest;
-import com.doguy.tickets.domain.dtos.CreateEventRequestDto;
-import com.doguy.tickets.domain.dtos.CreateEventResponseDto;
-import com.doguy.tickets.domain.dtos.ListEventResponseDto;
-import com.doguy.tickets.domain.dtos.ListEventTicketTypeResponseDto;
+import com.doguy.tickets.domain.dtos.requests.CreateEventRequestDto;
+import com.doguy.tickets.domain.dtos.responses.CreateEventResponseDto;
+import com.doguy.tickets.domain.dtos.responses.ListEventResponseDto;
+import com.doguy.tickets.domain.dtos.responses.ListEventTicketTypeResponseDto;
 import com.doguy.tickets.domain.entities.Event;
 import com.doguy.tickets.domain.entities.TicketType;
 import org.mapstruct.Mapper;
