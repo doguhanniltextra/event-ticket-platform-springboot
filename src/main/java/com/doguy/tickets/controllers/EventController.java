@@ -66,7 +66,7 @@ public class EventController {
         UUID userId = parseUserId(jwt);
        return eventService.getEventForOrganizer(userId, eventId)
                 .map(eventMapper:: toGetEventDetailsResponseDto)
-                .map(ResponseEntity::ok)  
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
 
 
