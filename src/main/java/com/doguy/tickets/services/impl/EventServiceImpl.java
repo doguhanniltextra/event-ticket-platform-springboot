@@ -6,6 +6,7 @@ import com.doguy.tickets.domain.UpdateTicketTypeRequest;
 import com.doguy.tickets.domain.entities.Event;
 import com.doguy.tickets.domain.entities.TicketType;
 import com.doguy.tickets.domain.entities.User;
+import com.doguy.tickets.domain.enums.EventStatusEnum;
 import com.doguy.tickets.exception.EventNotFoundException;
 import com.doguy.tickets.exception.EventUpdateException;
 import com.doguy.tickets.exception.TicketTypeotFoundException;
@@ -149,6 +150,11 @@ public class EventServiceImpl implements EventService {
     @Transactional
     public void deleteEventForOrganizer(UUID organizerId, UUID id) {
         getEventForOrganizer(organizerId, id).ifPresent(eventRepository::delete);
+    }
+
+    @Override
+    public Page<Event> listPublishedEvents(Pageable pageable) {
+      return eventRepository.findByStatus(EventStatusEnum.PUBLISHED, pageable);
     }
 
 
