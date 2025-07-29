@@ -20,7 +20,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize ->
                         authorize
 
-                                .requestMatchers(HttpMethod.GET, "/api/v1/published-events")
+                                .requestMatchers(HttpMethod.GET, "/api/v1/published-events/**")
                                 .permitAll()
 
                                 // CATCH ALL
